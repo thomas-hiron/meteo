@@ -1,7 +1,8 @@
 
 /* Imports */
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Button } from 'react-native';
+import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
 
 /**
  * Lance l'application
@@ -12,9 +13,28 @@ export default class App extends Component {
 	{
 		return (
 			<View>
-				<View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: '#BBDEFB'}}>
-					<Image style={{width: 50, height: 50}} source={require('./images/logo.png')} />
-					<Text style={{fontSize: 24, paddingLeft: 15}}>Où fait-il le plus beau ?</Text>
+				<View 
+					style={{flexDirection: 'row', alignItems: 'center', backgroundColor: '#90CAF9'}}>
+					<Image
+						style={{width: 50, height: 50}} source={require('./images/logo.png')} />
+					<Text
+						style={{fontSize: 24}}>Où fait-il le plus beau ?</Text>
+				</View>
+
+				<View
+					style={{padding:20}}>
+					<MKTextField
+					  tintColor="#0D47A1"
+					  placeholder="Entrer ma ville"
+					/>
+					<Text
+						style={{marginBottom: 10, alignSelf: 'center'}}>
+						ou
+					</Text>
+					<Button 
+						title="Localiser ma position"
+						color="#0D47A1">
+					</Button>
 				</View>
 			</View>
 		);
