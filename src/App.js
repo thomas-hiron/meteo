@@ -2,12 +2,28 @@
 /* Imports */
 import React, { Component } from 'react';
 import { View, Text, Image, Button } from 'react-native';
-import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit';
+
+import Localizing from './components/Localizing';
 
 /**
  * Lance l'application
  */
 export default class App extends Component {
+
+	constructor(props)
+	{
+		super(props);
+
+		this.state = {
+			localizing: false
+		};
+	}
+
+	getLocation()
+	{
+		this.setState({localizing: true});
+	}
 
 	render()
 	{
@@ -31,10 +47,14 @@ export default class App extends Component {
 						style={{marginBottom: 10, alignSelf: 'center'}}>
 						ou
 					</Text>
-					<Button 
+					<Button
 						title="Localiser ma position"
-						color="#0D47A1">
+						color="#0D47A1"
+						onPress={() => this.getLocation()}>
 					</Button>
+
+					{this.state.localizing === true ? <Localizing/> : null}
+
 				</View>
 			</View>
 		);
