@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { MKSpinner } from 'react-native-material-kit';
 
+import GeolocationService from './../classes/GeolocationService';
+
 /**
- * Lance l'application
+ * Le composant qui gère la localisation
  */
 export default class Geolocation extends Component {
 
@@ -20,6 +22,8 @@ export default class Geolocation extends Component {
 			longitude: 0,
 			error: false
 		};
+
+		this.geolocationService = new GeolocationService();
 	}
 
 	/**
@@ -33,27 +37,32 @@ export default class Geolocation extends Component {
 			error: false
 		});
 
-		navigator.geolocation.getCurrentPosition(
-	      (position) => {
+		this.geolocationService.getLocation(position => this.onLocationAcquired(position), () => this.onLocationError());
+	}
 
-	      	/* Réussi, localisation terminée et ajout des coords */
-	        this.setState({
-	        	latitude: position.coords.latitude, 
-	        	longitude: position.coords.longitude,
-				localizing: false
-	        });
-	      },
-	      (error) => {
+	/**
+	 * Position acquise
+	 */
+	onLocationAcquired(position)
+	{
+      	/* Réussi, localisation terminée et ajout des coords */
+        this.setState({
+        	latitude: position.coords.latitude, 
+        	longitude: position.coords.longitude,
+			localizing: false
+        });	
+	}
 
-	      	/* Erreur, localisation terminée et erreur */
-	      	this.setState({
-	      		error: true,
-	      		localizing: false
-	      	})
-	      },
-	      /* Options */
-	      {enableHighAccuracy: true, timeout: 1000, maximumAge: 1000}
-	    );
+	/**
+	 * Erreur de localisation
+	 */
+	onLocationError()
+	{
+      	/* Erreur, localisation terminée et erreur */
+      	this.setState({
+      		error: true,
+      		localizing: false
+      	});	
 	}
 
 	render()
