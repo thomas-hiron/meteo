@@ -18,7 +18,7 @@ export default class GeolocationService {
 			/* Options */
 			{
 				enableHighAccuracy: true,
-				timeout: 1000,
+				timeout: 10000,
 				maximumAge: 1000
 			}
 	    );

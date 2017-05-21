@@ -16,6 +16,15 @@ export default class App extends Component {
 		super(props);
 	}
 
+	/**
+	 * Localisation acquise, suite
+	 */
+	onLocationAcquired(coords)
+	{
+		// TODO : récupérer les données
+		console.log(coords);
+	}
+
 	render()
 	{
 		return (
@@ -39,7 +48,8 @@ export default class App extends Component {
 						ou
 					</Text>
 
-					<Geolocation/>
+					<Geolocation
+						onLocationAcquired={coords => this.onLocationAcquired(coords)} />
 
 				</View>
 			</View>

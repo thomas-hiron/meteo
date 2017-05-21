@@ -54,7 +54,11 @@ export default class Geolocation extends Component {
         	latitude: position.coords.latitude, 
         	longitude: position.coords.longitude,
 			localizing: false
-        });	
+        });
+
+        /* Callback */
+        if(typeof this.props.onLocationAcquired === "function")
+        	this.props.onLocationAcquired(position.coords);
 	}
 
 	/**
