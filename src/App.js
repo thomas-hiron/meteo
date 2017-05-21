@@ -1,10 +1,10 @@
 
 /* Imports */
 import React, { Component } from 'react';
-import { View, Text, Image, Button } from 'react-native';
-import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit';
+import { View, Text, Image } from 'react-native';
+import { MKTextField } from 'react-native-material-kit';
 
-import Localizing from './components/Localizing';
+import Geolocation from './components/Geolocation';
 
 /**
  * Lance l'application
@@ -14,15 +14,6 @@ export default class App extends Component {
 	constructor(props)
 	{
 		super(props);
-
-		this.state = {
-			localizing: false
-		};
-	}
-
-	getLocation()
-	{
-		this.setState({localizing: true});
 	}
 
 	render()
@@ -47,13 +38,8 @@ export default class App extends Component {
 						style={{marginBottom: 10, alignSelf: 'center'}}>
 						ou
 					</Text>
-					<Button
-						title="Localiser ma position"
-						color="#0D47A1"
-						onPress={() => this.getLocation()}>
-					</Button>
 
-					{this.state.localizing === true ? <Localizing/> : null}
+					<Geolocation/>
 
 				</View>
 			</View>
