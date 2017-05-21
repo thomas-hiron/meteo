@@ -31,13 +31,17 @@ export default class Geolocation extends Component {
 	 */
 	getLocation()
 	{
-		/* Localisation en cours, suppression de l'erreur */
-		this.setState({
-			localizing: true,
-			error: false
-		});
+		/* Pas de localisation en cours */
+		if(this.state.localizing === false)
+		{
+			/* Localisation en cours, suppression de l'erreur */
+			this.setState({
+				localizing: true,
+				error: false
+			});
 
-		this.geolocationService.getLocation(position => this.onLocationAcquired(position), () => this.onLocationError());
+			this.geolocationService.getLocation(position => this.onLocationAcquired(position), () => this.onLocationError());
+		}
 	}
 
 	/**
